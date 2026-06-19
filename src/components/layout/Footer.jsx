@@ -1,0 +1,165 @@
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import './Footer.css';
+import { useScrollAnimation } from '../../hooks/useScrollAnimation';
+import logo from '../../assests/images/logo.png'; // Your company logo
+
+// ── Icons (inline SVG, no extra deps) ────────────────────────────
+const IconArrow = () => (
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <path d="M5 12h14M12 5l7 7-7 7"/>
+  </svg>
+);
+
+const IconLinkedIn = () => (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2zm2-3a2 2 0 100-4 2 2 0 000 4z"/>
+  </svg>
+);
+
+const IconTwitter = () => (
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+  </svg>
+);
+
+// ─────────────────────────────────────────────────────────────────
+
+export default function Footer() {
+  const navigate = useNavigate();
+
+  const [ctaRef,  ctaVisible]  = useScrollAnimation({ threshold: 0.15 });
+  const [col1Ref, col1Visible] = useScrollAnimation({ threshold: 0.1 });
+  const [col2Ref, col2Visible] = useScrollAnimation({ threshold: 0.1 });
+  const [col3Ref, col3Visible] = useScrollAnimation({ threshold: 0.1 });
+  const [col4Ref, col4Visible] = useScrollAnimation({ threshold: 0.1 });
+  const [botRef,  botVisible]  = useScrollAnimation({ threshold: 0.5 });
+
+  return (
+    <footer className="footer">
+
+      {/* ── CTA Banner ─────────────────────────────────────────── */}
+      <div ref={ctaRef} className={`footer-cta anim anim-up ${ctaVisible ? 'anim-visible' : ''}`}>
+        <div className="footer-cta-text">
+          <p className="footer-cta-eyebrow">Ready to transform your CRM?</p>
+          <h2 className="footer-cta-heading">
+            Let's build something<br />
+            <span>exceptional together.</span>
+          </h2>
+        </div>
+        <div className="footer-cta-actions">
+          <a onClick={() => navigate('/contact')} className="footer-cta-btn footer-cta-btn--primary">
+            Book a Free Demo <IconArrow />
+          </a>
+        </div>
+      </div>
+
+      {/* ── Top grid ───────────────────────────────────────────── */}
+      <div className="footer-top">
+
+        {/* Col 1 — Brand + nav links */}
+        <div ref={col1Ref} className={`footer-col footer-col--brand anim anim-up anim-d1 ${col1Visible ? 'anim-visible' : ''}`}>
+          <div className="footer-logo">
+            <img src={logo} alt="DreamCode Technologies" className="footer-logo-img" />
+          </div>
+
+          <nav className="footer-col--nav">
+            <a onClick={() => navigate('/about')} className="footer-nav-link">About Us</a>
+            <a onClick={() => navigate('/services')} className="footer-nav-link">Explore Our Services</a>
+            <a onClick={() => navigate('/accelerators')} className="footer-nav-link">Our Accelerators</a>
+            <a onClick={() => navigate('/industries')} className="footer-nav-link">Explore All Industries</a>
+            <a onClick={() => navigate('/partners')} className="footer-nav-link">Partners</a>
+            <a onClick={() => navigate('/careers')} className="footer-nav-link">Careers</a>
+          </nav>
+        </div>
+
+        {/* Col 2 — Popular Links */}
+        <div ref={col2Ref} className={`footer-col anim anim-up anim-d2 ${col2Visible ? 'anim-visible' : ''}`}>
+          <p className="footer-col-heading">Popular Links</p>
+          <ul className="footer-list">
+            <li><a onClick={() => navigate('/engagement-model')} className="footer-link">Engagement Model</a></li>
+            <li><a onClick={() => navigate('/services/education-cloud')} className="footer-link">Education Cloud</a></li>
+            <li><a onClick={() => navigate('/services/agentforce')} className="footer-link">Agentforce</a></li>
+            <li><a onClick={() => navigate('/services/financial-services-cloud')} className="footer-link">Financial Services Cloud</a></li>
+            <li><a onClick={() => navigate('/services/health-cloud')} className="footer-link">Health Cloud</a></li>
+            <li><a onClick={() => navigate('/services/public-sector')} className="footer-link">Public Sector</a></li>
+            <li><a onClick={() => navigate('/services/financial-services')} className="footer-link">Financial Services</a></li>
+            <li><a onClick={() => navigate('/services/healthcare')} className="footer-link">Healthcare</a></li>
+          </ul>
+        </div>
+
+        {/* Col 3 — Resources + Contact Us */}
+        <div ref={col3Ref} className={`footer-col anim anim-up anim-d3 ${col3Visible ? 'anim-visible' : ''}`}>
+          <p className="footer-col-heading">Resources</p>
+          <ul className="footer-list">
+            <li><a onClick={() => navigate('/featured')} className="footer-link">Featured</a></li>
+            <li><a onClick={() => navigate('/blog')} className="footer-link">All Blogs</a></li>
+            <li><a onClick={() => navigate('/partners')} className="footer-link">Partners</a></li>
+            <li><a onClick={() => navigate('/contact')} className="footer-link">Contact</a></li>
+          </ul>
+
+          <p className="footer-col-heading footer-col-heading--spaced">Contact Us</p>
+          <ul className="footer-list">
+            <li>
+              <span className="footer-contact-label">Email:</span>
+              <a href="mailto:info@dreamcodetech.com" className="footer-link footer-link--teal">
+                info@dreamcodetech.com
+              </a>
+            </li>
+            <li>
+              <span className="footer-contact-label">Website:</span>
+              <a href="https://dreamcodetech.com" target="_blank" rel="noreferrer" className="footer-link footer-link--teal">
+                https://dreamcodetech.com
+              </a>
+            </li>
+            <li>
+              <span className="footer-contact-label">Phone:</span>
+              <a href="tel:+918220627183" className="footer-link footer-link--teal">
+                +91 8220627183
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        {/* Col 4 — Company Logo Only */}
+        <div ref={col4Ref} className={`footer-col footer-col--logo-only anim anim-up anim-d4 ${col4Visible ? 'anim-visible' : ''}`}>
+          <div className="footer-logo-large">
+            <img src={logo} alt="DreamCode Technologies" className="footer-logo-large-img" />
+          </div>
+        </div>
+
+      </div>
+
+      <div className="footer-divider" />
+
+      {/* ── Bottom bar ─────────────────────────────────────────── */}
+      <div ref={botRef} className={`footer-bottom anim anim-fade ${botVisible ? 'anim-visible' : ''}`}>
+        <p className="footer-copy">
+          © 2026 DreamCode Technologies, Inc. &nbsp;|&nbsp;{' '}
+          <a href="/privacy" className="footer-privacy">Privacy Policy</a>
+        </p>
+        <div className="footer-bottom-right">
+          <a
+            href="https://www.linkedin.com/company/dreamcode-technologies"
+            target="_blank"
+            rel="noreferrer"
+            className="footer-social-link"
+            aria-label="LinkedIn"
+          >
+            <IconLinkedIn />
+          </a>
+          <a
+            href="https://twitter.com/dreamcodetech"
+            target="_blank"
+            rel="noreferrer"
+            className="footer-social-link"
+            aria-label="Twitter / X"
+          >
+            <IconTwitter />
+          </a>
+        </div>
+      </div>
+
+    </footer>
+  );
+}

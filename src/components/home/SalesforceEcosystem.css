@@ -1,0 +1,552 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@600;700;800;900&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+.eco-section {
+  width: 100%;
+  padding: 80px 32px 80px;
+  background: linear-gradient(160deg, #0A2472 0%, #1246C8 45%, #1A5CD8 80%, #2255D8 100%);
+  font-family: 'Inter', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+.eco-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(255,255,255,0.07) 1px, transparent 1px);
+  background-size: 28px 28px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* HEADING */
+.eco-heading-wrap {
+  width: 100%;
+  max-width: 1100px;
+  margin-bottom: 36px;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+.eco-heading {
+  font-family: 'Poppins', sans-serif;
+  font-size: clamp(28px, 4vw, 46px);
+  font-weight: 800;
+  color: #fff;
+  margin: 0;
+  line-height: 1.15;
+  letter-spacing: -0.5px;
+}
+.eco-heading-accent {
+  background: linear-gradient(90deg, #7DD3FC 0%, #93C5FD 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* OUTER CARD */
+.eco-outer-card {
+  width: 100%;
+  max-width: 1100px;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 24px 80px rgba(0,0,0,0.30);
+  position: relative;
+  z-index: 1;
+  border: 1px solid rgba(255,255,255,0.12);
+}
+
+/* AGENTFORCE */
+.eco-af-layer {
+  background: linear-gradient(135deg, #0A2472 0%, #0E3090 100%);
+  padding: 36px 40px 0;
+}
+.eco-af-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin-bottom: 28px;
+}
+.eco-af-icon-wrap {
+  width: 52px;
+  height: 52px;
+  background: rgba(255,255,255,0.12);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255,255,255,0.20);
+}
+.eco-af-icon-wrap svg {
+  width: 28px;
+  height: 28px;
+}
+.eco-af-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: clamp(22px, 3vw, 32px);
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -0.3px;
+}
+.eco-af-agents {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 32px;
+}
+.eco-af-agent {
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.80);
+  padding: 7px 16px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 20px;
+  border: 1px solid rgba(255,255,255,0.14);
+  transition: background 0.18s, border-color 0.18s;
+}
+.eco-af-agent:hover {
+  background: rgba(255,255,255,0.16);
+  border-color: rgba(255,255,255,0.28);
+}
+
+/* LAYER BAR */
+.eco-layer-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 20px 28px;
+  cursor: pointer;
+  user-select: none;
+  position: relative;
+}
+.eco-layer-bar--accel {
+  background: #1246C8;
+}
+.eco-layer-bar--c360 {
+  background: #1560D4;
+}
+
+.eco-bar-icon-wrap {
+  width: 40px;
+  height: 40px;
+  background: rgba(255,255,255,0.15);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255,255,255,0.22);
+  flex-shrink: 0;
+}
+.eco-bar-icon-wrap svg {
+  width: 22px;
+  height: 22px;
+}
+.eco-bar-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: clamp(18px, 2.5vw, 26px);
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -0.2px;
+}
+.eco-caret {
+  position: absolute;
+  right: 28px;
+  width: 28px;
+  height: 28px;
+  background: rgba(255,255,255,0.12);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255,255,255,0.80);
+  font-size: 12px;
+  transition: transform 0.25s, background 0.2s;
+}
+.eco-caret--up {
+  transform: rotate(180deg);
+}
+.eco-caret:hover {
+  background: rgba(255,255,255,0.20);
+}
+.eco-caret--dark {
+  background: rgba(18,70,200,0.10);
+  color: #1246C8;
+}
+
+/* ACCELERATORS */
+.eco-accel-layer {
+  background: #1246C8;
+  overflow: hidden;
+}
+.eco-accel-content {
+  display: flex;
+  justify-content: space-around;
+  gap: 20px;
+  padding: 12px 28px 32px;
+  flex-wrap: wrap;
+}
+.eco-accel-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  flex: 1;
+  min-width: 200px;
+}
+.eco-accel-cat {
+  font-size: 13px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.75);
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.eco-accel-cards {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.eco-accel-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 20px 18px 14px;
+  min-width: 148px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.18);
+  transition: transform 0.18s, box-shadow 0.18s;
+  border: 1px solid rgba(18,70,200,0.08);
+}
+.eco-accel-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.22);
+}
+.eco-accel-card-icons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.eco-accel-app-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: #EBF3FF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.eco-accel-app-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.eco-accel-plus {
+  font-size: 18px;
+  color: #aaa;
+  font-weight: 700;
+}
+.eco-sf-logo {
+  width: 90px;
+  height: 44px;
+  border-radius: 10px;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.eco-dreamcode-logo {
+  width: 80px;
+  height: auto;
+  object-fit: contain;
+}
+.eco-accel-card-name {
+  font-size: 12px;
+  font-weight: 700;
+  color: #2A4A7F;
+  text-align: center;
+}
+
+/* CUSTOMER 360 */
+.eco-c360-layer {
+  background: #1560D4;
+  overflow: hidden;
+}
+.eco-c360-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 18px;
+  padding: 12px 28px 32px;
+}
+.eco-c360-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 9px;
+  cursor: pointer;
+  transition: transform 0.18s;
+  min-width: 76px;
+}
+.eco-c360-item:hover {
+  transform: translateY(-3px);
+}
+
+/* Circle fully filled with logo */
+.eco-c360-icon-wrap {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid rgba(255,255,255,0.7);
+  box-shadow: 0 4px 14px rgba(0,0,0,0.20);
+  transition: box-shadow 0.18s;
+  background: #fff;
+}
+.eco-c360-item:hover .eco-c360-icon-wrap {
+  box-shadow: 0 8px 24px rgba(0,0,0,0.28);
+}
+.eco-c360-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.eco-c360-label {
+  font-size: 11.5px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.92);
+  text-align: center;
+  max-width: 80px;
+  line-height: 1.3;
+}
+
+/* SALESFORCE PLATFORM */
+.eco-sf-platform {
+  background: #fff;
+  padding: 28px 40px 0;
+}
+.eco-sf-platform-row {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 16px;
+}
+.eco-sf-side {
+  display: flex;
+  justify-content: flex-end;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.eco-sf-side--right {
+  justify-content: flex-start;
+}
+.eco-sf-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 12px;
+  font-weight: 600;
+  color: #2A4A7F;
+  text-align: center;
+  line-height: 1.4;
+  min-width: 84px;
+  padding: 8px 10px;
+  background: #EBF3FF;
+  border-radius: 10px;
+  border: 1px solid #D0E2FA;
+}
+.eco-sf-center {
+  text-align: center;
+  flex-shrink: 0;
+}
+.eco-sf-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: clamp(16px, 2vw, 24px);
+  font-weight: 800;
+  color: #1246C8;
+}
+.eco-mulesoft-row {
+  position: relative;
+  height: 56px;
+  margin: 0 -40px;
+}
+.eco-mulesoft-svg {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.eco-mulesoft-badge {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #1246C8;
+  white-space: nowrap;
+  background: #fff;
+  padding: 5px 16px;
+  border-radius: 20px;
+  border: 1.5px solid #D0E2FA;
+  box-shadow: 0 2px 10px rgba(18,70,200,0.10);
+}
+.eco-mulesoft-icon {
+  font-size: 18px;
+  color: #e64a19;
+}
+
+/* 3RD PARTY INTEGRATION */
+.eco-3rd-section {
+  background: #F4F8FF;
+  border-top: 1px solid #D0E2FA;
+}
+.eco-3rd-section--last {
+  border-bottom: none;
+}
+.eco-3rd-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 20px 40px;
+  cursor: pointer;
+  user-select: none;
+  position: relative;
+}
+.eco-3rd-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: clamp(15px, 2vw, 20px);
+  font-weight: 700;
+  color: #0A2472;
+}
+
+/* 3PI cards — logo on top, name below */
+.eco-3pi-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  padding: 8px 40px 28px;
+}
+.eco-3pi-card {
+  background: #fff;
+  border: 1.5px solid #D0E2FA;
+  border-radius: 16px;
+  padding: 24px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 80px;
+  box-shadow: 0 2px 10px rgba(18,70,200,0.07);
+  transition: box-shadow 0.18s, transform 0.18s;
+}
+.eco-3pi-card:hover {
+  box-shadow: 0 6px 20px rgba(18,70,200,0.14);
+  transform: translateY(-2px);
+}
+.eco-3pi-img {
+  width: 100%;
+  height: 60px;
+  object-fit: contain;
+  object-position: center;
+}
+.eco-3pi-name {
+  display: none;
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .eco-section {
+    padding: 60px 16px;
+  }
+  .eco-af-layer {
+    padding: 28px 20px 0;
+  }
+  .eco-accel-content {
+    flex-direction: column;
+    align-items: center;
+  }
+  .eco-sf-platform-row {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 16px;
+  }
+  .eco-sf-side {
+    justify-content: center;
+  }
+  .eco-sf-side--right {
+    justify-content: center;
+  }
+  .eco-3pi-cards {
+    grid-template-columns: 1fr;
+  }
+  .eco-3pa-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .eco-3rd-header,
+  .eco-3pi-cards,
+  .eco-3pa-grid {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
+@media (max-width: 560px) {
+  .eco-c360-grid {
+    gap: 12px;
+  }
+  .eco-c360-icon-wrap {
+    width: 52px;
+    height: 52px;
+  }
+  .eco-3pa-grid {
+    grid-template-columns: 1fr;
+  }
+  .eco-af-agent {
+    font-size: 11px;
+    padding: 5px 12px;
+  }
+  .eco-accel-card {
+    min-width: 130px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .eco-accel-card:hover,
+  .eco-c360-item:hover,
+  .eco-af-agent:hover,
+  .eco-3pa-card:hover,
+  .eco-3pi-card:hover {
+    transform: none;
+  }
+}
+/* Agentforce icon in Customer 360 */
+.eco-c360-agentforce-icon {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #0A2472 0%, #1246C8 100%);
+  border-radius: 50%;
+}
+.eco-c360-agentforce-icon svg {
+  width: 32px;
+  height: 32px;
+}

@@ -1,0 +1,119 @@
+/* ────────────────────────────────────────────────────────────────── */
+/* CONTACT FORM STYLES */
+/* ────────────────────────────────────────────────────────────────── */
+
+.connect-form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.connect-form__row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+}
+
+.connect-form__group {
+    display: flex;
+    flex-direction: column;
+}
+
+.connect-form__input,
+.connect-form__select,
+.connect-form__textarea {
+    width: 100%;
+    padding: 13px 16px;
+    border: 1.5px solid rgba(255, 255, 255, 0.28);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.12);
+    color: #fff;
+    font-size: 14px;
+    font-family: 'Inter', sans-serif;
+    outline: none;
+    transition: border-color 0.2s, background 0.2s;
+}
+
+.connect-form__input::placeholder,
+.connect-form__textarea::placeholder {
+    color: rgba(255, 255, 255, 0.55);
+}
+
+.connect-form__select {
+    color: rgba(255, 255, 255, 0.80);
+    cursor: pointer;
+}
+
+.connect-form__select option {
+    background: #1246C8;
+    color: #fff;
+}
+
+.connect-form__input:focus,
+.connect-form__select:focus,
+.connect-form__textarea:focus {
+    border-color: #7DD3FC;
+    background: rgba(255, 255, 255, 0.18);
+}
+
+.connect-form__textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.connect-form__recaptcha-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-top: 6px;
+}
+
+.connect-form__recaptcha {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.85);
+    cursor: pointer;
+}
+
+.connect-form__recaptcha input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: #7DD3FC;
+    cursor: pointer;
+}
+
+.connect-form__submit {
+    padding: 13px 40px;
+    background: #fff;
+    color: #1246C8;
+    font-size: 15px;
+    font-weight: 700;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    font-family: 'Inter', sans-serif;
+}
+
+.connect-form__submit:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.20);
+}
+
+/* ────────────────────────────────────────────────────────────────── */
+/* RESPONSIVE */
+/* ────────────────────────────────────────────────────────────────── */
+
+@media (max-width: 768px) {
+    .connect-form__row {
+        grid-template-columns: 1fr;
+    }
+
+    .connect-form__recaptcha-row {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}

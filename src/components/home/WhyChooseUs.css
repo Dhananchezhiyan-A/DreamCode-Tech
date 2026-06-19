@@ -1,0 +1,181 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&display=swap');
+
+/* ═══════════════════════════════════════════ */
+/* SECTION                                     */
+/* ═══════════════════════════════════════════ */
+
+.wcu-section {
+  position: relative;
+  width: 100%;
+  padding: 80px 24px 72px;
+  background: linear-gradient(160deg, #eaf2ff 0%, #f8fbff 55%, #e8f4ff 100%);
+  overflow: hidden;
+}
+
+.wcu-section::before {
+  content: '';
+  position: absolute;
+  top: -12%; right: -8%;
+  width: 380px; height: 380px;
+  background: radial-gradient(circle, rgba(18,70,200,0.06) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.wcu-section::after {
+  content: '';
+  position: absolute;
+  bottom: -10%; left: -6%;
+  width: 320px; height: 320px;
+  background: radial-gradient(circle, rgba(6,182,212,0.05) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+/* ═══════════════════════════════════════════ */
+/* WRAPPER                                     */
+/* ═══════════════════════════════════════════ */
+
+.wcu-wrapper {
+  max-width: 1100px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+/* ═══════════════════════════════════════════ */
+/* HEADING                                     */
+/* ═══════════════════════════════════════════ */
+
+.wcu-header {
+  text-align: center;
+  margin-bottom: 52px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.wcu-header.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.wcu-eyebrow {
+  display: inline-block;
+  font-family: 'Poppins', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 3.5px;
+  text-transform: uppercase;
+  color: #1246c8;
+  background: rgba(18, 70, 200, 0.09);
+  padding: 5px 18px;
+  border-radius: 20px;
+  margin-bottom: 12px;
+}
+
+.wcu-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: 36px;
+  font-weight: 800;
+  color: #0a1a3a;
+  margin: 0 0 10px;
+  letter-spacing: -0.8px;
+  line-height: 1.2;
+}
+
+.wcu-title span {
+  color: #1246c8;
+}
+
+.wcu-subtitle {
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  color: #6b7280;
+  margin: 0 auto;
+  max-width: 460px;
+  line-height: 1.65;
+}
+
+/* ═══════════════════════════════════════════ */
+/* DIAGRAM                                     */
+/* ═══════════════════════════════════════════ */
+
+.wcu-diagram {
+  width: 100%;
+  opacity: 0;
+  transform: scale(0.97);
+  transition: opacity 0.8s ease 0.2s, transform 0.8s ease 0.2s;
+}
+
+.wcu-diagram.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.wcu-svg {
+  width: 100%;
+  display: block;
+  overflow: visible;
+}
+
+/* ═══════════════════════════════════════════ */
+/* SVG TEXT CLASSES                            */
+/* ═══════════════════════════════════════════ */
+
+.wcu-circle-text-dark {
+  font-family: 'Poppins', sans-serif;
+  font-size: 27px;
+  font-weight: 900;
+  fill: #0a1a3a;
+}
+
+.wcu-circle-text-blue {
+  font-family: 'Poppins', sans-serif;
+  font-size: 26px;
+  font-weight: 900;
+  fill: #1246c8;
+}
+
+.wcu-num {
+  font-family: 'Poppins', sans-serif;
+  font-size: 12px;
+  font-weight: 800;
+  fill: #ffffff;
+}
+
+.wcu-pill-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  fill: #0a1a3a;
+}
+
+.wcu-pill-desc {
+  font-family: 'Poppins', sans-serif;
+  font-size: 11px;
+  font-weight: 400;
+}
+
+.wcu-icon {
+  font-size: 22px;
+}
+
+/* ═══════════════════════════════════════════ */
+/* RESPONSIVE                                  */
+/* ═══════════════════════════════════════════ */
+
+@media (max-width: 768px) {
+  .wcu-section { padding: 60px 16px 56px; }
+  .wcu-title   { font-size: 28px; }
+  .wcu-header  { margin-bottom: 36px; }
+}
+
+@media (max-width: 480px) {
+  .wcu-title   { font-size: 24px; }
+  .wcu-section { padding: 50px 12px 48px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}

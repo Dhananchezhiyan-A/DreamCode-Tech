@@ -1,0 +1,36 @@
+/* ── Base: all animated elements start hidden ─────────────────── */
+.anim {
+  opacity: 0;
+  transition-property: opacity, transform;
+  transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  transition-duration: 0.7s;
+}
+
+/* ── Direction variants ───────────────────────────────────────── */
+.anim-up     { transform: translateY(40px); }
+.anim-down   { transform: translateY(-40px); }
+.anim-left   { transform: translateX(-48px); }
+.anim-right  { transform: translateX(48px); }
+.anim-scale  { transform: scale(0.92); }
+.anim-fade   { transform: none; }
+
+/* ── Visible state (JS adds .anim-visible) ────────────────────── */
+.anim-visible {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+/* ── Stagger delays ───────────────────────────────────────────── */
+.anim-d1 { transition-delay: 0.05s; }
+.anim-d2 { transition-delay: 0.12s; }
+.anim-d3 { transition-delay: 0.20s; }
+.anim-d4 { transition-delay: 0.28s; }
+.anim-d5 { transition-delay: 0.36s; }
+.anim-d6 { transition-delay: 0.44s; }
+.anim-d7 { transition-delay: 0.52s; }
+.anim-d8 { transition-delay: 0.60s; }
+
+/* ── Reduced motion ───────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .anim { opacity: 1; transform: none; transition: none; }
+}
