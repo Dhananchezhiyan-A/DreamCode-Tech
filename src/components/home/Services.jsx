@@ -11,7 +11,7 @@ const SERVICES = [
         <path d="M14 20h6M14 26h10M28 20l4 3-4 3" stroke="#1246C8" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
       </svg>
     ),
-    tag: "Foundation",
+    
     title: "Implementation & Setup",
     desc: "Deploy a production-ready Salesforce environment aligned to your business processes — on schedule and built to scale.",
     points: [
@@ -31,7 +31,7 @@ const SERVICES = [
         <path d="M18 40v-4M30 40v-6" stroke="#93C5FD" strokeWidth="2.2" strokeLinecap="round"/>
       </svg>
     ),
-    tag: "Most Requested",
+   
     title: "Customization & Development",
     desc: "Extend Salesforce's native capabilities with purpose-built solutions — from complex automations to custom UI components.",
     points: [
@@ -52,7 +52,7 @@ const SERVICES = [
         <circle cx="24" cy="28" r="3" fill="#1246C8" opacity="0.7"/>
       </svg>
     ),
-    tag: "Enterprise",
+   
     title: "Cloud Migration",
     desc: "Transition from legacy systems to Salesforce Cloud with a structured, low-risk migration strategy that preserves data integrity.",
     points: [

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import heroImage from '../assests/images/one.jpeg';
 import './ResourcesPage.css';
+import '../about/Aboutsection.css';  // <-- ADD THIS LINE
 
 const featuredPosts = [
     {
@@ -155,7 +156,7 @@ const ResourcesPage = () => {
         email: '',
         phone: '',
         company: '',
-        reason: '',
+        service: '',
         message: '',
     });
     const [notRobot, setNotRobot] = useState(false);
@@ -219,7 +220,7 @@ const ResourcesPage = () => {
         setTimeout(() => {
             setFormStatus('success');
             setFormData({
-                firstName: '', lastName: '', email: '', phone: '', company: '', reason: '', message: '',
+                firstName: '', lastName: '', email: '', phone: '', company: '', service: '', message: '',
             });
             setNotRobot(false);
             setErrors({});
@@ -357,7 +358,7 @@ const ResourcesPage = () => {
                 </div>
             </section>
 
-            {/* ── CONNECT WITH US ── CONTACT FORM ── */}
+            {/* ── CONNECT WITH US ── CONTACT FORM ONLY ── */}
             <section className="resources-connect" id="connect">
                 <div className="resources-connect__inner">
                     <div className="resources-connect__header">
@@ -375,11 +376,23 @@ const ResourcesPage = () => {
                             </div>
                             <h2>Thank You!</h2>
                             <p>Your message has been sent successfully. Our team will get back to you within 24 hours.</p>
-                            <button
+                            <button 
                                 className="contact-btn contact-btn--primary"
-                                onClick={() => setFormStatus('idle')}
+                                onClick={() => {
+                                    setFormStatus('idle');
+                                    setFormData({
+                                        firstName: '', lastName: '', email: '', phone: '', company: '', service: '', message: '',
+                                    });
+                                }}
                             >
                                 Send Another Message
+                            </button>
+                            <button 
+                                className="contact-btn contact-btn--outline"
+                                style={{ marginTop: '12px' }}
+                                onClick={() => window.location.href = '/'}
+                            >
+                                Back to Home
                             </button>
                         </div>
                     ) : (
@@ -505,7 +518,9 @@ const ResourcesPage = () => {
                                                 Sending...
                                             </span>
                                         ) : (
-                                            <>Send Message →</>
+                                            <>
+                                                Send Message <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+                                            </>
                                         )}
                                     </button>
                                 </div>
@@ -513,7 +528,8 @@ const ResourcesPage = () => {
                         </div>
                     )}
                 </div>
-            </section>        </div>
+            </section>
+        </div>
     );
 };
 

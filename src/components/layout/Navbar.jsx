@@ -14,14 +14,11 @@ const NAV_LINKS = [
       { label: "Mobile App Development",    to: "/services/mobile-app" },
       { label: "UI/UX Development",         to: "/services/ui-ux" },
       { label: "Cloud Services",              to: "/services/cloud" },
-      { label: "Application Support",         to: "/services/app-support" },
-      { label: "Dedicated Teams",             to: "/services/dedicated-teams" },
-      { label: "Sales Cloud",                 to: "/services/sales-cloud" },
-      { label: "Service Cloud",               to: "/services/service-cloud" },
-      { label: "Marketing Cloud",             to: "/services/marketing-cloud" },
-      { label: "Platform & Integration",      to: "/services/platform-integration" },
-      { label: "Analytics & AI",              to: "/services/analytics-ai" },
-      { label: "Support & Maintenance",       to: "/services/support-maintenance" },
+      { label: "Salesforce Services",         to: "/services/salesforce" },
+      { label: "Zoho Services",               to: "/services/zoho" },
+      { label: "Integration Services",          to: "/services/integrations" },
+      { label: "Data Analytics",              to: "/services/analytics" },
+      { label: "Infrastructure & Security",   to: "/services/infrastructure" },
     ],
   },
   { label: "Resources", to: "/resources" },
@@ -171,7 +168,7 @@ export default function Navbar() {
         })}
       </ul>
 
-      {/* CTA Button - Now links to Contact page */}
+      {/* CTA Button */}
       <div className="navbar-cta">
         <Link to="/contact">
           <button className="btn-contact">Contact Us</button>

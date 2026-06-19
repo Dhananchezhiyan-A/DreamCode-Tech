@@ -5,7 +5,7 @@
 /* ─── Section wrapper ─────────────────────────────────────────── */
 .svc-section {
   background: #ffffff;
-  padding: 100px 24px 112px;
+  padding: 100px 24px 0;        /* ← FIXED: removed 112px bottom padding */
   font-family: 'Inter', sans-serif;
   position: relative;
   overflow: hidden;
@@ -390,7 +390,7 @@
 
 /* ─── Responsive ──────────────────────────────────────────────── */
 @media (max-width: 960px) {
-  .svc-section { padding: 72px 20px 80px; }
+  .svc-section { padding: 72px 20px 0; }  /* ← FIXED: removed bottom padding */
   .svc-grid { grid-template-columns: 1fr; }
   .svc-footer { gap: 28px; padding: 32px 20px; }
   .svc-stat-divider { display: none; }

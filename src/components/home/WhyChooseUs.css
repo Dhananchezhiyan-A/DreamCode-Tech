@@ -7,7 +7,7 @@
 .wcu-section {
   position: relative;
   width: 100%;
-  padding: 80px 24px 72px;
+  padding: 48px 24px 72px;
   background: linear-gradient(160deg, #eaf2ff 0%, #f8fbff 55%, #e8f4ff 100%);
   overflow: hidden;
 }
@@ -50,6 +50,7 @@
 .wcu-header {
   text-align: center;
   margin-bottom: 52px;
+  margin-top: 0;
   opacity: 0;
   transform: translateY(20px);
   transition: opacity 0.7s ease, transform 0.7s ease;
@@ -166,14 +167,14 @@
 /* ═══════════════════════════════════════════ */
 
 @media (max-width: 768px) {
-  .wcu-section { padding: 60px 16px 56px; }
+  .wcu-section { padding: 40px 16px 56px; }
   .wcu-title   { font-size: 28px; }
   .wcu-header  { margin-bottom: 36px; }
 }
 
 @media (max-width: 480px) {
   .wcu-title   { font-size: 24px; }
-  .wcu-section { padding: 50px 12px 48px; }
+  .wcu-section { padding: 32px 12px 48px; }
 }
 
 @media (prefers-reduced-motion: reduce) {

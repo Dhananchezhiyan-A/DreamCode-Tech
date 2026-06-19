@@ -150,7 +150,7 @@ export default function Contact() {
                 <IconPhone />
               </div>
               <h3>Phone</h3>
-              <a href="tel:+918220627183">+91 8220627183</a>
+              <a href="tel:+918220627183">+91 86676 08772</a>
               <span>Mon - Fri, 9am - 6pm IST</span>
             </div>
 
@@ -177,7 +177,7 @@ export default function Contact() {
                 <IconMapPin />
               </div>
               <h3>Location</h3>
-              <p>India</p>
+              <p>Chennai Tamilnadu India</p>
               <span>Remote & On-site Support</span>
             </div>
           </div>
@@ -312,8 +312,11 @@ export default function Contact() {
           <div className="contact-locations-grid">
             <div className="contact-location-card">
               <div className="contact-location-flag">🇮🇳</div>
-              <h3>India</h3>
-              <p>Headquarters</p>
+              <h3>
+Millenia towers
+Campus 3B, 6th Floor,11 MGR Main Road Kandhanchavadi
+Perungudi, Chennai, Tamil Nadu 600096 India</h3>
+              
               <span>Serving clients across APAC & Middle East</span>
             </div>
           </div>

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Zap, X, Code, Cloud, Smartphone, Settings, BarChart3, Palette, Shield, Layers, ChevronRight, CheckCircle2, ArrowRight } from 'lucide-react';
+import { Zap, X, Code, Cloud, Smartphone, Settings, BarChart3, Palette, Shield, Layers, ChevronRight, CheckCircle2, ArrowRight, Send } from 'lucide-react';
 import '../Contact/ContactSection.css';
 import './Servicepages.css';
 import { useScrollAnimation } from '../../hooks/useScrollAnimation';
@@ -126,64 +126,6 @@ const whyCards = [
   },
 ];
 
-/* ─── SUCCESS STORIES DATA ──────────────────────────── */
-const stories = [
-  {
-    id: 1,
-    client: 'Samerra Group',
-    initials: 'SG',
-    location: 'Saudi Arabia',
-    industry: 'Real Estate Development',
-    challenge:
-      'Samerra Group managed thousands of property leads across multiple projects using disconnected spreadsheets and manual follow-ups, causing high lead leakage and no visibility into pipeline health.',
-    solution:
-      'End-to-end Salesforce Sales Cloud implementation tailored for real estate — custom property objects, automated lead routing by project, and a bespoke pipeline dashboard for C-suite reporting.',
-    results: [
-      { metric: '68%',  label: 'Reduction in lead leakage' },
-      { metric: '3x',   label: 'Faster deal closure' },
-      { metric: '100%', label: 'Pipeline visibility' },
-    ],
-  },
-  {
-    id: 2,
-    client: 'Adissa',
-    initials: 'AD',
-    location: 'UAE',
-    industry: 'Property Sales & Brokerage',
-    challenge:
-      "Adissa's sales agents were working from siloed data, with no unified view of client interactions, property preferences, or follow-up history — leading to duplicate outreach and lost trust.",
-    solution:
-      "Salesforce CRM deployment with a 360° client profile, automated WhatsApp and email follow-up sequences, and real-time agent performance dashboards synced to Adissa's property inventory.",
-    results: [
-      { metric: '45%',     label: 'Increase in conversions' },
-      { metric: '2 weeks', label: 'Go-live timeline' },
-      { metric: '90%',     label: 'Agent adoption rate' },
-    ],
-  },
-  {
-    id: 3,
-    client: 'Casagrand Dubai',
-    initials: 'CD',
-    location: 'Dubai, UAE',
-    industry: 'Luxury Real Estate',
-    challenge:
-      'Casagrand Dubai was expanding rapidly but lacked a scalable CRM to manage international buyers, off-plan units, and complex multi-stage approval workflows across their Dubai portfolio.',
-    solution:
-      'Salesforce implementation with multi-currency support, off-plan unit tracking, buyer journey automation, and integration with Dubai Land Department workflows for seamless compliance.',
-    results: [
-      { metric: '240Cr+',   label: 'Pipeline managed' },
-      { metric: '55%',      label: 'Faster approvals' },
-      { metric: '4 months', label: 'Full deployment' },
-    ],
-  },
-];
-
-const headerStats = [
-  { value: '3+',   label: 'Enterprise Clients' },
-  { value: '98%',  label: 'Satisfaction Rate' },
-  { value: '240Cr+', label: 'Pipeline Managed' },
-];
-
 /* ─── SERVICES GRID COMPONENT ─────────────────────────── */
 function ServicesGrid() {
   const navigate = useNavigate();
@@ -259,195 +201,192 @@ function WhyModal({ item, onClose }) {
   );
 }
 
-/* ─── CONTACT FORM TREES ─────────────────────────────── */
-const TreeLeft = () => (
-  <svg className="contact-form-section__tree-left" viewBox="0 0 180 260" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-    <polygon points="90,10 140,140 40,140" fill="#4aac8a" opacity="0.55" />
-    <polygon points="90,60 150,200 30,200" fill="#3d9a7a" opacity="0.65" />
-    <rect x="80" y="200" width="20" height="50" fill="#5c3d1e" opacity="0.70" />
-    <polygon points="40,60 85,170 -5,170" fill="#52b896" opacity="0.75" />
-    <polygon points="40,110 90,230 -10,230" fill="#45a688" opacity="0.80" />
-    <rect x="30" y="228" width="18" height="35" fill="#6b4226" opacity="0.75" />
-  </svg>
-);
-
-const TreeRight = () => (
-  <svg className="contact-form-section__tree-right" viewBox="0 0 180 260" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-    <polygon points="90,10 140,140 40,140" fill="#4aac8a" opacity="0.55" />
-    <polygon points="90,60 150,200 30,200" fill="#3d9a7a" opacity="0.65" />
-    <rect x="80" y="200" width="20" height="50" fill="#5c3d1e" opacity="0.70" />
-    <polygon points="140,60 185,170 95,170" fill="#52b896" opacity="0.75" />
-    <polygon points="140,110 190,230 90,230" fill="#45a688" opacity="0.80" />
-    <rect x="130" y="228" width="18" height="35" fill="#6b4226" opacity="0.75" />
-  </svg>
-);
-
-function ConnectFormSection() {
+/* ═══ CONTACT FORM ONLY - NO INFO CARDS ═══ */
+function ContactFormOnly() {
   const [formData, setFormData] = useState({
-    firstName: '', lastName: '', email: '', phone: '', company: '', reason: '', message: '',
+    firstName: '',
+    lastName: '',
+    email: '',
+    phone: '',
+    company: '',
+    service: '',
+    message: ''
   });
-  const [notRobot, setNotRobot] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-  const handleChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
-
-  const handleSubmit = () => {
-    if (!notRobot) { alert('Please confirm you are not a robot.'); return; }
-    alert('Thank you for reaching out! We will get back to you within 24 hours.');
-    setFormData({ firstName: '', lastName: '', email: '', phone: '', company: '', reason: '', message: '' });
-    setNotRobot(false);
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    await new Promise(resolve => setTimeout(resolve, 1500));
+    setLoading(false);
+    setSubmitted(true);
+  };
+
+  const servicesList = [
+    'Sales Cloud',
+    'Service Cloud',
+    'Marketing Cloud',
+    'Agentforce',
+    'Salesforce CPQ',
+    'Education Cloud',
+    'Health Cloud',
+    'Financial Services Cloud',
+    'Custom Development',
+    'Other'
+  ];
+
+  if (submitted) {
+    return (
+      <section className="contact-form-section" id="connect">
+        <div className="contact-success">
+          <div className="contact-success-icon">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/>
+              <polyline points="22 4 12 14.01 9 11.01"/>
+            </svg>
+          </div>
+          <h2>Thank You!</h2>
+          <p>Your message has been sent successfully. Our team will get back to you within 24 hours.</p>
+          <button 
+            onClick={() => { 
+              setSubmitted(false); 
+              setFormData({ firstName: '', lastName: '', email: '', phone: '', company: '', service: '', message: '' }); 
+            }} 
+            className="contact-btn contact-btn--primary"
+          >
+            Send Another Message
+          </button>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className="contact-form-section" id="connect">
-      <TreeLeft />
-      <TreeRight />
       <div className="contact-form-section__inner">
-        <h2 className="contact-form-section__heading">Connect with us</h2>
-        <p className="contact-form-section__sub">Ready to elevate your business?</p>
-        <p className="contact-form-section__tagline">Contact us today to discuss how we can help you achieve your goals!</p>
-        <div className="connect-form">
-          <div className="connect-form__row">
-            <div className="connect-form__group">
-              <input className="connect-form__input" type="text" name="firstName" placeholder="First Name*" required value={formData.firstName} onChange={handleChange} />
-            </div>
-            <div className="connect-form__group">
-              <input className="connect-form__input" type="text" name="lastName" placeholder="Last Name*" required value={formData.lastName} onChange={handleChange} />
-            </div>
-          </div>
-          <div className="connect-form__group">
-            <input className="connect-form__input" type="email" name="email" placeholder="Email Address*" required value={formData.email} onChange={handleChange} />
-          </div>
-          <div className="connect-form__row">
-            <div className="connect-form__group">
-              <input className="connect-form__input" type="tel" name="phone" placeholder="Phone Number" value={formData.phone} onChange={handleChange} />
-            </div>
-            <div className="connect-form__group">
-              <input className="connect-form__input" type="text" name="company" placeholder="Company" value={formData.company} onChange={handleChange} />
-            </div>
-          </div>
-          <div className="connect-form__group">
-            <select className="connect-form__select" name="reason" value={formData.reason} onChange={handleChange}>
-              <option value="" disabled>Reason For Contact</option>
-              <option>Service Inquiry</option>
-              <option>Partnership</option>
-              <option>Salesforce Implementation</option>
-              <option>Consulting Services</option>
-              <option>General Inquiry</option>
-            </select>
-          </div>
-          <div className="connect-form__group">
-            <textarea className="connect-form__textarea" name="message" placeholder="Message" rows="5" value={formData.message} onChange={handleChange} />
-          </div>
-          <div className="connect-form__recaptcha-row">
-            <label className="connect-form__recaptcha">
-              <input type="checkbox" checked={notRobot} onChange={(e) => setNotRobot(e.target.checked)} />
-              I&apos;m not a robot
-            </label>
-            <button type="button" className="connect-form__submit" onClick={handleSubmit}>Submit</button>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ═══ SUCCESS STORIES SECTION ═══ */
-function SuccessStories() {
-  const [active, setActive] = useState(0);
-  const story = stories[active];
-
-  const [headerRef, headerVisible] = useScrollAnimation({ threshold: 0.1 });
-  const [tabsRef,   tabsVisible]   = useScrollAnimation({ threshold: 0.1 });
-  const [cardRef,   cardVisible]   = useScrollAnimation({ threshold: 0.08 });
-
-  return (
-    <section className="ss-section">
-      <div className="ss-section-inner">
-
-        {/* Header */}
-        <div ref={headerRef} className="ss-header">
-          <div className="ss-header-left">
-            <div className={`ss-eyebrow anim anim-up anim-d1 ${headerVisible ? 'anim-visible' : ''}`}>
-              Client Results
-            </div>
-            <h2 className={`ss-heading anim anim-up anim-d2 ${headerVisible ? 'anim-visible' : ''}`}>
-              Success<br /><span className="highlight">Stories</span>
-            </h2>
+        <div className="contact-form-wrapper">
+          <div className="contact-form-header">
+            <h2>Send Us a Message</h2>
+            <p>Fill out the form below and we&apos;ll get back to you shortly.</p>
           </div>
 
-          <div className="ss-header-right">
-            <p className={`ss-subhead anim anim-up anim-d3 ${headerVisible ? 'anim-visible' : ''}`}>
-              Real outcomes from Salesforce implementations built for real estate
-              professionals. See how we've helped companies like yours achieve
-              measurable results.
-            </p>
-            <div className={`ss-header-stats anim anim-up anim-d4 ${headerVisible ? 'anim-visible' : ''}`}>
-              {headerStats.map((s) => (
-                <div key={s.label} className="ss-stat">
-                  <span className="ss-stat-value">{s.value}</span>
-                  <span className="ss-stat-label">{s.label}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* Tabs */}
-        <div ref={tabsRef} className="ss-tabs">
-          {stories.map((s, i) => (
-            <button
-              key={s.id}
-              className={`ss-tab anim anim-up anim-d${i + 1} ${tabsVisible ? 'anim-visible' : ''} ${i === active ? 'ss-tab--active' : ''}`}
-              onClick={() => setActive(i)}
-            >
-              <span className="ss-tab-initials">{s.initial}</span>
-              {s.client}
-            </button>
-          ))}
-        </div>
-
-        {/* Card */}
-        <div ref={cardRef} className={`ss-card anim anim-up ${cardVisible ? 'anim-visible' : ''}`}>
-          <div className="ss-card-header">
-            <div className="ss-card-header-left">
-              <div className="ss-avatar">{story.initials}</div>
-              <div>
-                <h3 className="ss-client-name">{story.client}</h3>
-                <span className="ss-badge">
-                  {story.industry} · {story.location}
-                </span>
+          <form onSubmit={handleSubmit} className="contact-form">
+            <div className="contact-form-row">
+              <div className="contact-form-group">
+                <label htmlFor="firstName">First Name *</label>
+                <input
+                  type="text"
+                  id="firstName"
+                  name="firstName"
+                  value={formData.firstName}
+                  onChange={handleChange}
+                  required
+                  placeholder="John"
+                />
+              </div>
+              <div className="contact-form-group">
+                <label htmlFor="lastName">Last Name *</label>
+                <input
+                  type="text"
+                  id="lastName"
+                  name="lastName"
+                  value={formData.lastName}
+                  onChange={handleChange}
+                  required
+                  placeholder="Doe"
+                />
               </div>
             </div>
-            <div className="ss-quote-mark">"</div>
-          </div>
 
-          <div className="ss-grid">
-            <div className="ss-block">
-              <div className="ss-block-label">Challenge</div>
-              <p className="ss-block-text">{story.challenge}</p>
-            </div>
-            <div className="ss-block">
-              <div className="ss-block-label">Solution</div>
-              <p className="ss-block-text">{story.solution}</p>
-            </div>
-          </div>
-
-          <div className="ss-metrics">
-            {story.results.map((r) => (
-              <div key={r.label} className="ss-metric">
-                <div className="ss-metric-value">{r.metric}</div>
-                <div className="ss-metric-label">{r.label}</div>
+            <div className="contact-form-row">
+              <div className="contact-form-group">
+                <label htmlFor="email">Email Address *</label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
+                  placeholder="john@company.com"
+                />
               </div>
-            ))}
-          </div>
-        </div>
+              <div className="contact-form-group">
+                <label htmlFor="phone">Phone Number</label>
+                <input
+                  type="tel"
+                  id="phone"
+                  name="phone"
+                  value={formData.phone}
+                  onChange={handleChange}
+                  placeholder="+91 98765 43210"
+                />
+              </div>
+            </div>
 
-        {/* Footer note */}
-        <div className={`ss-sf-note anim anim-fade anim-d2 ${cardVisible ? 'anim-visible' : ''}`}>
-          <Zap size={16} />
-          All implementations delivered on Salesforce Sales Cloud — certified and production-ready for enterprise scale.
-        </div>
+            <div className="contact-form-row">
+              <div className="contact-form-group">
+                <label htmlFor="company">Company Name</label>
+                <input
+                  type="text"
+                  id="company"
+                  name="company"
+                  value={formData.company}
+                  onChange={handleChange}
+                  placeholder="Your Company Ltd."
+                />
+              </div>
+              <div className="contact-form-group">
+                <label htmlFor="service">Service Interest *</label>
+                <select
+                  id="service"
+                  name="service"
+                  value={formData.service}
+                  onChange={handleChange}
+                  required
+                >
+                  <option value="">Select a service...</option>
+                  {servicesList.map((service) => (
+                    <option key={service} value={service}>{service}</option>
+                  ))}
+                </select>
+              </div>
+            </div>
 
+            <div className="contact-form-group contact-form-group--full">
+              <label htmlFor="message">Message *</label>
+              <textarea
+                id="message"
+                name="message"
+                value={formData.message}
+                onChange={handleChange}
+                required
+                rows="5"
+                placeholder="Tell us about your project, requirements, or any questions you have..."
+              />
+            </div>
+
+            <div className="contact-form-submit">
+              <button type="submit" className="contact-btn contact-btn--primary" disabled={loading}>
+                {loading ? (
+                  <span className="contact-btn-loading">
+                    <span className="contact-spinner" />
+                    Sending...
+                  </span>
+                ) : (
+                  <>
+                    Send Message <Send size={18} />
+                  </>
+                )}
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
     </section>
   );
@@ -460,7 +399,6 @@ export default function ServicePages() {
   // Scroll animations for sections
   const [heroRef, heroVisible] = useScrollAnimation();
   const [whyRef, whyVisible] = useScrollAnimation({ threshold: 0.1 });
-  const connectRef = useScrollAnimation({ threshold: 0.1 })[0];
 
   return (
     <div className="services-page">
@@ -507,13 +445,8 @@ export default function ServicePages() {
 
       {activeWhyModal && <WhyModal item={activeWhyModal} onClose={() => setActiveWhyModal(null)} />}
 
-      {/* ══ 4. SUCCESS STORIES ══ */}
-      <SuccessStories />
-
-      {/* ══ 5. CONNECT FORM ══ */}
-      <div ref={connectRef}>
-        <ConnectFormSection />
-      </div>
+      {/* ══ 4. CONTACT FORM ONLY - NO INFO CARDS ══ */}
+      <ContactFormOnly />
 
     </div>
   );

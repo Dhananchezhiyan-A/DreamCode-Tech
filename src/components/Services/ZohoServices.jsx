@@ -2,13 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./ZohoServices.css";
 
-let heroImage;
-try {
-  heroImage = require("../../assests/images/zoho ser.jpg");
-} catch (e) {
-  heroImage = "";
-}
-
+import heroImage from "../../assests/images/zoho-ser.jpg";
 const deliverItems = [
   {
     icon: "📊",

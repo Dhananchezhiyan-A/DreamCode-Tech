@@ -88,148 +88,69 @@ const industries = [
 ];
 
 /* ═══════════════════════════════════════════════════════════
-   HERO SECTION WITH BACKGROUND IMAGE
-   ═══════════════════════════════════════════════════════════ */
-
-function HeroSection() {
-  return (
-    <section className="about-hero">
-      <div 
-        className="about-hero__bg"
-        style={{ backgroundImage: `url(${aboutImage})` }}
-      />
-      <div className="about-hero__content">
-        <span className="about-hero__eyebrow">About Us</span>
-        <h1 className="about-hero__title">{COMPANY.tagline}</h1>
-        <p className="about-hero__desc">{COMPANY.description}</p>
-      </div>
-    </section>
-  );
-}
-
-/* ═══════════════════════════════════════════════════════════
    SCROLL-DRIVEN TIMELINE SECTION
    ═══════════════════════════════════════════════════════════ */
 
 function TimelineSection() {
   const containerRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start end", "end start"]
-  });
-
-  const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 100,
-    damping: 30,
-    restDelta: 0.001
-  });
-
-  const lineHeight = useTransform(smoothProgress, [0, 0.5], ["0%", "100%"]);
-  const headerOpacity = useTransform(smoothProgress, [0, 0.15], [0, 1]);
-  const headerY = useTransform(smoothProgress, [0, 0.15], [60, 0]);
 
   return (
     <section ref={containerRef} className="timeline-section">
-      <div className="timeline-bg" />
-
       <div className="timeline-container">
-        <motion.div 
-          className="timeline-header"
-          style={{ opacity: headerOpacity, y: headerY }}
-        >
+        <div className="timeline-header">
           <span className="timeline-eyebrow">Our Journey</span>
           <h2 className="timeline-title">From 2019 to Today</h2>
           <p className="timeline-subtitle">Building trust, one project at a time</p>
-        </motion.div>
+        </div>
 
         <div className="timeline">
           <div className="timeline__track">
             <div className="timeline__track-bg" />
-            <motion.div 
-              className="timeline__track-fill"
-              style={{ height: lineHeight }}
-            />
+            <div className="timeline__track-fill" />
           </div>
 
-          {MILESTONES.map((milestone, index) => {
-            const startRange = index / MILESTONES.length;
-            const endRange = (index + 1) / MILESTONES.length;
-            const midRange = startRange + (endRange - startRange) / 2;
-
-            return (
-              <TimelineCard
-                key={milestone.year}
-                milestone={milestone}
-                index={index}
-                progress={smoothProgress}
-                startRange={startRange}
-                endRange={endRange}
-                midRange={midRange}
-              />
-            );
-          })}
+          {MILESTONES.map((milestone, index) => (
+            <TimelineCard
+              key={milestone.year}
+              milestone={milestone}
+              index={index}
+            />
+          ))}
         </div>
 
-        <motion.div 
-          className="timeline-finale"
-          style={{
-            opacity: useTransform(smoothProgress, [0.75, 0.9], [0, 1]),
-            y: useTransform(smoothProgress, [0.75, 0.9], [40, 0]),
-          }}
-        >
+        <div className="timeline-finale">
           <h3 className="timeline-finale__title">
             Building the Next Generation of Salesforce Solutions
           </h3>
           <p className="timeline-finale__desc">
             2024 is just a milestone. The next chapter of growth is already underway.
           </p>
-        </motion.div>
+        </div>
       </div>
     </section>
   );
 }
 
-function TimelineCard({ milestone, index, progress, startRange, midRange }) {
+function TimelineCard({ milestone, index }) {
   const isLeft = index % 2 === 0;
-
-  const cardOpacity = useTransform(progress, [startRange, midRange], [0, 1]);
-  const cardX = useTransform(progress, [startRange, midRange], [isLeft ? -80 : 80, 0]);
-  const cardY = useTransform(progress, [startRange, midRange], [30, 0]);
-  const dotScale = useTransform(progress, [startRange, midRange], [0, 1]);
-  const dotGlow = useTransform(progress, [startRange, midRange], [0, 1]);
 
   return (
     <div className={`timeline__item timeline__item--${isLeft ? 'left' : 'right'}`}>
-      <motion.div 
-        className="timeline__dot-wrapper"
-        style={{ scale: dotScale }}
-      >
+      <div className="timeline__dot-wrapper">
         <div className="timeline__dot" />
-        <motion.div 
-          className="timeline__dot-glow"
-          style={{ opacity: dotGlow }}
-        />
-      </motion.div>
+      </div>
 
-      <motion.div
-        className="timeline__card"
-        style={{
-          opacity: cardOpacity,
-          x: cardX,
-          y: cardY,
-        }}
-      >
+      <div className="timeline__card">
         <div className="timeline__card-header">
           <span className="timeline__year">{milestone.year}</span>
           <span className="timeline__tag">{milestone.tag}</span>
         </div>
         <h4 className="timeline__card-title">{milestone.title}</h4>
         <p className="timeline__card-desc">{milestone.desc}</p>
-      </motion.div>
+      </div>
     </div>
   );
 }
-
 /* ═══════════════════════════════════════════════════════════
    INDUSTRY EXPERTISE SECTION
    ═══════════════════════════════════════════════════════════ */
@@ -592,8 +513,7 @@ function ContactSection() {
 
 export default function AboutPage() {
   return (
-    <div className="about-page" id="about">
-      <HeroSection />
+    <div className="about-page" id="about">     
 
       <section className="foundation-section">
         <div className="container">

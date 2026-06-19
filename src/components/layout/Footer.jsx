@@ -1,10 +1,10 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import './Footer.css';
 import { useScrollAnimation } from '../../hooks/useScrollAnimation';
-import logo from '../../assests/images/logo.png'; // Your company logo
+import logo from '../../assests/images/logo.png';
 
-// ── Icons (inline SVG, no extra deps) ────────────────────────────
+// ── Icons ───────────────────────────────────────────────────────
 const IconArrow = () => (
   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
     <path d="M5 12h14M12 5l7 7-7 7"/>
@@ -27,6 +27,9 @@ const IconTwitter = () => (
 
 export default function Footer() {
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const isHomePage = location.pathname === '/';
 
   const [ctaRef,  ctaVisible]  = useScrollAnimation({ threshold: 0.15 });
   const [col1Ref, col1Visible] = useScrollAnimation({ threshold: 0.1 });
@@ -38,21 +41,23 @@ export default function Footer() {
   return (
     <footer className="footer">
 
-      {/* ── CTA Banner ─────────────────────────────────────────── */}
-      <div ref={ctaRef} className={`footer-cta anim anim-up ${ctaVisible ? 'anim-visible' : ''}`}>
-        <div className="footer-cta-text">
-          <p className="footer-cta-eyebrow">Ready to transform your CRM?</p>
-          <h2 className="footer-cta-heading">
-            Let's build something<br />
-            <span>exceptional together.</span>
-          </h2>
+      {/* ── CTA Banner — ONLY on home page ─────────────────────── */}
+      {isHomePage && (
+        <div ref={ctaRef} className={`footer-cta anim anim-up ${ctaVisible ? 'anim-visible' : ''}`}>
+          <div className="footer-cta-text">
+            <p className="footer-cta-eyebrow">Ready to transform your CRM?</p>
+            <h2 className="footer-cta-heading">
+              Let's build something<br />
+              <span>exceptional together.</span>
+            </h2>
+          </div>
+          <div className="footer-cta-actions">
+            <a onClick={() => navigate('/contact')} className="footer-cta-btn footer-cta-btn--primary">
+              Book a Free Demo <IconArrow />
+            </a>
+          </div>
         </div>
-        <div className="footer-cta-actions">
-          <a onClick={() => navigate('/contact')} className="footer-cta-btn footer-cta-btn--primary">
-            Book a Free Demo <IconArrow />
-          </a>
-        </div>
-      </div>
+      )}
 
       {/* ── Top grid ───────────────────────────────────────────── */}
       <div className="footer-top">
@@ -66,8 +71,6 @@ export default function Footer() {
           <nav className="footer-col--nav">
             <a onClick={() => navigate('/about')} className="footer-nav-link">About Us</a>
             <a onClick={() => navigate('/services')} className="footer-nav-link">Explore Our Services</a>
-            <a onClick={() => navigate('/accelerators')} className="footer-nav-link">Our Accelerators</a>
-            <a onClick={() => navigate('/industries')} className="footer-nav-link">Explore All Industries</a>
             <a onClick={() => navigate('/partners')} className="footer-nav-link">Partners</a>
             <a onClick={() => navigate('/careers')} className="footer-nav-link">Careers</a>
           </nav>
@@ -115,7 +118,7 @@ export default function Footer() {
             <li>
               <span className="footer-contact-label">Phone:</span>
               <a href="tel:+918220627183" className="footer-link footer-link--teal">
-                +91 8220627183
+                +91 8667608772
               </a>
             </li>
           </ul>
@@ -132,11 +135,23 @@ export default function Footer() {
 
       <div className="footer-divider" />
 
+      {/* ── Disclaimer ─────────────────────────────────────────── */}
+      <div className="footer-disclaimer">
+        <p className="footer-disclaimer-title">Disclaimer</p>
+        <p className="footer-disclaimer-text">
+          I authorize DreamCode Technologies and its representatives to Call, SMS, Email, RCS, or WhatsApp me to provide information about their products and offers. This consent overrides any registration for DNC / NDNC.
+        </p>
+      </div>
+
+      <div className="footer-divider" />
+
       {/* ── Bottom bar ─────────────────────────────────────────── */}
       <div ref={botRef} className={`footer-bottom anim anim-fade ${botVisible ? 'anim-visible' : ''}`}>
         <p className="footer-copy">
-          © 2026 DreamCode Technologies, Inc. &nbsp;|&nbsp;{' '}
+          © 2026 DreamCode Technologies, Inc. &nbsp;|&nbsp;
           <a href="/privacy" className="footer-privacy">Privacy Policy</a>
+          &nbsp;|&nbsp;
+          <a href="/terms" className="footer-privacy">Terms and Conditions</a>
         </p>
         <div className="footer-bottom-right">
           <a
