@@ -1,13 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import {
-  motion,
-  useScroll,
-  useTransform,
-  useSpring,
-} from 'framer-motion';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
-import aboutImage from '../assests/images/sec.jpeg';
 import './Aboutsection.css';
 
 /* ─── INDUSTRY IMAGES ───────────────────────────────────── */

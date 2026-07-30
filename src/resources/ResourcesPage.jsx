@@ -103,28 +103,6 @@ const sectionAliases = {
 
 const categories = ['all', 'AI', 'Implementation', 'Integration', 'Platform', 'Data', 'Cloud'];
 
-const TreeLeft = () => (
-    <svg className="resources-connect__tree-left" viewBox="0 0 180 260" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <polygon points="90,10 140,140 40,140" fill="#4aac8a" opacity="0.55" />
-        <polygon points="90,60 150,200 30,200" fill="#3d9a7a" opacity="0.65" />
-        <rect x="80" y="200" width="20" height="50" fill="#5c3d1e" opacity="0.70" />
-        <polygon points="40,60 85,170 -5,170" fill="#52b896" opacity="0.75" />
-        <polygon points="40,110 90,230 -10,230" fill="#45a688" opacity="0.80" />
-        <rect x="30" y="228" width="18" height="35" fill="#6b4226" opacity="0.75" />
-    </svg>
-);
-
-const TreeRight = () => (
-    <svg className="resources-connect__tree-right" viewBox="0 0 180 260" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <polygon points="90,10 140,140 40,140" fill="#4aac8a" opacity="0.55" />
-        <polygon points="90,60 150,200 30,200" fill="#3d9a7a" opacity="0.65" />
-        <rect x="80" y="200" width="20" height="50" fill="#5c3d1e" opacity="0.70" />
-        <polygon points="140,60 185,170 95,170" fill="#52b896" opacity="0.75" />
-        <polygon points="140,110 190,230 90,230" fill="#45a688" opacity="0.80" />
-        <rect x="130" y="228" width="18" height="35" fill="#6b4226" opacity="0.75" />
-    </svg>
-);
-
 const BlogCard = ({ post, featured = false }) => (
     <article className={`resources-blog-card${featured ? ' resources-blog-card--featured' : ''}`}>
         <div className="resources-blog-card__pattern" aria-hidden="true" />

@@ -6,7 +6,6 @@ import salesLogo from '../../assests/images/sales.png';
 import serviceLogo from '../../assests/images/service.png';
 import marketingLogo from '../../assests/images/mark.webp';
 import tableauLogo from '../../assests/images/tableau.webp';
-import cpqLogo from '../../assests/images/cpq.webp';
 import educationLogo from '../../assests/images/eduction.png';
 import healthLogo from '../../assests/images/health.png';
 import manufacturingLogo from '../../assests/images/manfacturing.png';

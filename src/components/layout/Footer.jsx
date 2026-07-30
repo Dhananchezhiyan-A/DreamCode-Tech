@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import './Footer.css';
 import { useScrollAnimation } from '../../hooks/useScrollAnimation';
 import logo from '../../assests/images/logo.png';
@@ -26,7 +26,6 @@ const IconTwitter = () => (
 // ─────────────────────────────────────────────────────────────────
 
 export default function Footer() {
-  const navigate = useNavigate();
   const location = useLocation();
 
   const isHomePage = location.pathname === '/';
@@ -52,9 +51,9 @@ export default function Footer() {
             </h2>
           </div>
           <div className="footer-cta-actions">
-            <a onClick={() => navigate('/contact')} className="footer-cta-btn footer-cta-btn--primary">
+            <Link to="/contact" className="footer-cta-btn footer-cta-btn--primary">
               Book a Free Demo <IconArrow />
-            </a>
+            </Link>
           </div>
         </div>
       )}
@@ -69,10 +68,10 @@ export default function Footer() {
           </div>
 
           <nav className="footer-col--nav">
-            <a onClick={() => navigate('/about')} className="footer-nav-link">About Us</a>
-            <a onClick={() => navigate('/services')} className="footer-nav-link">Explore Our Services</a>
-            <a onClick={() => navigate('/partners')} className="footer-nav-link">Partners</a>
-            <a onClick={() => navigate('/careers')} className="footer-nav-link">Careers</a>
+            <Link to="/about" className="footer-nav-link">About Us</Link>
+            <Link to="/services" className="footer-nav-link">Explore Our Services</Link>
+            <Link to="/partner" className="footer-nav-link">Partners</Link>
+            <Link to="/career" className="footer-nav-link">Careers</Link>
           </nav>
         </div>
 
@@ -80,14 +79,14 @@ export default function Footer() {
         <div ref={col2Ref} className={`footer-col anim anim-up anim-d2 ${col2Visible ? 'anim-visible' : ''}`}>
           <p className="footer-col-heading">Popular Links</p>
           <ul className="footer-list">
-            <li><a onClick={() => navigate('/engagement-model')} className="footer-link">Engagement Model</a></li>
-            <li><a onClick={() => navigate('/services/education-cloud')} className="footer-link">Education Cloud</a></li>
-            <li><a onClick={() => navigate('/services/agentforce')} className="footer-link">Agentforce</a></li>
-            <li><a onClick={() => navigate('/services/financial-services-cloud')} className="footer-link">Financial Services Cloud</a></li>
-            <li><a onClick={() => navigate('/services/health-cloud')} className="footer-link">Health Cloud</a></li>
-            <li><a onClick={() => navigate('/services/public-sector')} className="footer-link">Public Sector</a></li>
-            <li><a onClick={() => navigate('/services/financial-services')} className="footer-link">Financial Services</a></li>
-            <li><a onClick={() => navigate('/services/healthcare')} className="footer-link">Healthcare</a></li>
+            <li><Link to="/services" className="footer-link">Engagement Model</Link></li>
+            <li><Link to="/services" className="footer-link">Education Cloud</Link></li>
+            <li><Link to="/services" className="footer-link">Agentforce</Link></li>
+            <li><Link to="/services" className="footer-link">Financial Services Cloud</Link></li>
+            <li><Link to="/services" className="footer-link">Health Cloud</Link></li>
+            <li><Link to="/services" className="footer-link">Public Sector</Link></li>
+            <li><Link to="/services" className="footer-link">Financial Services</Link></li>
+            <li><Link to="/services" className="footer-link">Healthcare</Link></li>
           </ul>
         </div>
 
@@ -95,10 +94,10 @@ export default function Footer() {
         <div ref={col3Ref} className={`footer-col anim anim-up anim-d3 ${col3Visible ? 'anim-visible' : ''}`}>
           <p className="footer-col-heading">Resources</p>
           <ul className="footer-list">
-            <li><a onClick={() => navigate('/featured')} className="footer-link">Featured</a></li>
-            <li><a onClick={() => navigate('/blog')} className="footer-link">All Blogs</a></li>
-            <li><a onClick={() => navigate('/partners')} className="footer-link">Partners</a></li>
-            <li><a onClick={() => navigate('/contact')} className="footer-link">Contact</a></li>
+            <li><Link to="/resources" className="footer-link">Featured</Link></li>
+            <li><Link to="/resources" className="footer-link">All Blogs</Link></li>
+            <li><Link to="/partner" className="footer-link">Partners</Link></li>
+            <li><Link to="/contact" className="footer-link">Contact</Link></li>
           </ul>
 
           <p className="footer-col-heading footer-col-heading--spaced">Contact Us</p>

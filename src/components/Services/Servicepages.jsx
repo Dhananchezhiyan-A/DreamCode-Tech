@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { Zap, X, Code, Cloud, Smartphone, Settings, BarChart3, Palette, Shield, Layers, Home, ChevronRight, CheckCircle2, ArrowRight, Send } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import { Code, Cloud, Smartphone, Settings, BarChart3, Palette, Shield, Layers, Home, ChevronRight, CheckCircle2, Send } from 'lucide-react';
 import '../Contact/ContactSection.css';
 import './Servicepages.css';
 import { useScrollAnimation } from '../../hooks/useScrollAnimation';

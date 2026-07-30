@@ -1,21 +1,6 @@
-import React, { useMemo, useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
 import teamImage from '../assests/images/team.jpeg';
 import './Careerspage.css';
-
-const departments = ['All', 'Salesforce', 'IT', 'Telecommunications'];
-
-const openings = [
-    // No current openings — add future jobs here
-    // Example format:
-    // { id: 'sf-1', title: 'Senior Salesforce Developer', location: 'Hyderabad, India', type: 'Full time', department: 'Salesforce' },
-];
-
-const DEPT_ICONS = {
-    'Salesforce': '☁️',
-    'IT': '💻',
-    'Telecommunications': '📡',
-};
 
 
 /* ── CAREERS FORM COMPONENT ── */
@@ -275,7 +260,6 @@ function CareersForm() {
 }
 
 const CareersPage = () => {
-    const [filter, setFilter] = useState('All');
     const [showBackToTop, setShowBackToTop] = useState(false);
 
     React.useEffect(() => {
@@ -283,23 +267,6 @@ const CareersPage = () => {
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
-
-    const filteredOpenings = useMemo(
-        () => (filter === 'All' ? openings : openings.filter((job) => job.department === filter)),
-        [filter],
-    );
-
-    const groupedOpenings = useMemo(() => {
-        const groups = filteredOpenings.reduce((acc, job) => {
-            if (!acc[job.department]) acc[job.department] = [];
-            acc[job.department].push(job);
-            return acc;
-        }, {});
-        return departments
-            .filter((d) => d !== 'All')
-            .filter((d) => groups[d]?.length)
-            .map((d) => ({ department: d, jobs: groups[d] }));
-    }, [filteredOpenings]);
 
     const scrollToOpenings = () =>
         document.getElementById('openings')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
