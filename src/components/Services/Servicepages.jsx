@@ -1,19 +1,22 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Zap, X, Code, Cloud, Smartphone, Settings, BarChart3, Palette, Shield, Layers, ChevronRight, CheckCircle2, ArrowRight, Send } from 'lucide-react';
+import { Zap, X, Code, Cloud, Smartphone, Settings, BarChart3, Palette, Shield, Layers, Home, ChevronRight, CheckCircle2, ArrowRight, Send } from 'lucide-react';
 import '../Contact/ContactSection.css';
 import './Servicepages.css';
 import { useScrollAnimation } from '../../hooks/useScrollAnimation';
-
-/* ─── IMAGE IMPORTS ───────────────────────────────────── */
-import resultsImg    from '../../assests/images/leader.jpeg';
-import teamImg       from '../../assests/images/team.jpeg';
-import innovationImg from '../../assests/images/innovation.jpeg';
 
 /* ─── SERVICES DATA ──────────────────────────────────── */
 const services = [
   {
     id: 1,
+    title: 'Real Estate Services',
+    shortDesc: 'Technology-driven real estate solutions including property management platforms, listing portals, and CRM tools.',
+    icon: <Home size={32} />,
+    color: '#14B8A6',
+    route: '/services/real-estate'
+  },
+  {
+    id: 2,
     title: 'Custom Software Development',
     shortDesc: 'Tailored software solutions built to address your unique business challenges and drive digital transformation.',
     icon: <Code size={32} />,
@@ -21,7 +24,7 @@ const services = [
     route: '/services/custom-software'
   },
   {
-    id: 2,
+    id: 3,
     title: 'Salesforce Services',
     shortDesc: 'End-to-end Salesforce implementation, customization, and optimization to maximize your CRM investment.',
     icon: <Cloud size={32} />,
@@ -29,7 +32,7 @@ const services = [
     route: '/services/salesforce'
   },
   {
-    id: 3,
+    id: 4,
     title: 'Zoho Services',
     shortDesc: 'Complete Zoho ecosystem setup, customization, and integration for streamlined business operations.',
     icon: <Layers size={32} />,
@@ -37,7 +40,7 @@ const services = [
     route: '/services/zoho'
   },
   {
-    id: 4,
+    id: 5,
     title: 'Integrations',
     shortDesc: 'Seamless connectivity between your systems, applications, and data sources for unified workflows.',
     icon: <Settings size={32} />,
@@ -45,7 +48,7 @@ const services = [
     route: '/services/integrations'
   },
   {
-    id: 5,
+    id: 6,
     title: 'Mobile App Development',
     shortDesc: 'Native and cross-platform mobile applications that deliver exceptional user experiences.',
     icon: <Smartphone size={32} />,
@@ -53,7 +56,7 @@ const services = [
     route: '/services/mobile-app'
   },
   {
-    id: 6,
+    id: 7,
     title: 'Application Maintenance',
     shortDesc: 'Proactive support and maintenance to keep your applications running at peak performance.',
     icon: <CheckCircle2 size={32} />,
@@ -61,7 +64,7 @@ const services = [
     route: '/services/maintenance'
   },
   {
-    id: 7,
+    id: 8,
     title: 'Data Analytics',
     shortDesc: 'Transform raw data into actionable insights with advanced analytics and visualization solutions.',
     icon: <BarChart3 size={32} />,
@@ -69,7 +72,7 @@ const services = [
     route: '/services/data-analytics'
   },
   {
-    id: 8,
+    id: 9,
     title: 'UI/UX Design',
     shortDesc: 'User-centered design that creates intuitive, engaging, and visually stunning digital experiences.',
     icon: <Palette size={32} />,
@@ -77,7 +80,7 @@ const services = [
     route: '/services/ui-ux'
   },
   {
-    id: 9,
+    id: 10,
     title: 'Network, Infrastructure & Security',
     shortDesc: 'Robust infrastructure and security solutions to protect your business and ensure continuity.',
     icon: <Shield size={32} />,
@@ -86,53 +89,13 @@ const services = [
   }
 ];
 
-/* ─── SERVICE PAGE DATA ──────────────────────────────── */
-const whyCards = [
-  {
-    icon: '🎯',
-    title: 'Results-Driven Approach',
-    desc: 'We focus on delivering measurable outcomes that directly impact your business growth, efficiency, and bottom line.',
-    img: resultsImg,
-    modalItems: [
-      { icon: (<svg width="48" height="48" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="16" stroke="white" strokeWidth="3"/><circle cx="24" cy="24" r="8" stroke="white" strokeWidth="3"/><circle cx="24" cy="24" r="3" fill="white"/></svg>), title: 'Goal Alignment', desc: 'Every project starts with a clear understanding of your business objectives to ensure all efforts drive real value.' },
-      { icon: (<svg width="48" height="48" viewBox="0 0 48 48" fill="none"><path d="M8 36l10-12 8 6 8-10 8 8" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/><path d="M6 8v32h36" stroke="white" strokeWidth="3" strokeLinecap="round"/></svg>), title: 'KPI Tracking', desc: 'We define measurable KPIs upfront and track them throughout delivery to ensure transparent progress and accountability.' },
-      { icon: (<svg width="48" height="48" viewBox="0 0 48 48" fill="none"><rect x="8" y="28" width="8" height="12" rx="1" stroke="white" strokeWidth="3"/><rect x="20" y="18" width="8" height="22" rx="1" stroke="white" strokeWidth="3"/><rect x="32" y="10" width="8" height="30" rx="1" stroke="white" strokeWidth="3"/></svg>), title: 'Proven ROI', desc: 'Our solutions consistently deliver strong return on investment, backed by case studies and measurable client outcomes.' },
-      { icon: (<svg width="48" height="48" viewBox="0 0 48 48" fill="none"><path d="M24 8l4 12h12l-10 7 4 12-10-7-10 7 4-12L8 20h12z" stroke="white" strokeWidth="3" strokeLinejoin="round"/></svg>), title: 'Excellence Standards', desc: 'We hold ourselves to the highest standards of delivery, ensuring quality outcomes that exceed client expectations.' },
-    ],
-  },
-  {
-    icon: '⭐',
-    title: 'Expert Team',
-    desc: 'Our certified professionals bring years of industry experience and proven expertise across diverse domains and technologies.',
-    img: teamImg,
-    modalItems: [
-      { icon: (<svg width="48" height="48" viewBox="0 0 48 48" fill="none"><circle cx="16" cy="16" r="8" stroke="white" strokeWidth="3"/><circle cx="32" cy="16" r="8" stroke="white" strokeWidth="3"/><path d="M4 40c0-6.6 5.4-12 12-12h16c6.6 0 12 5.4 12 12" stroke="white" strokeWidth="3" strokeLinecap="round"/></svg>), title: 'Certified Professionals', desc: 'Every team member holds industry-recognised certifications ensuring the highest level of technical competence.' },
-      { icon: (<svg width="48" height="48" viewBox="0 0 48 48" fill="none"><path d="M24 8l4 12h12l-10 7 4 12-10-7-10 7 4-12L8 20h12z" stroke="white" strokeWidth="3" strokeLinejoin="round"/></svg>), title: 'Deep Domain Knowledge', desc: 'Years of cross-industry experience means we bring contextual insight, not just technical skills, to every engagement.' },
-      { icon: (<svg width="48" height="48" viewBox="0 0 48 48" fill="none"><rect x="6" y="10" width="36" height="28" rx="3" stroke="white" strokeWidth="3"/><path d="M6 18h36M16 28h16M16 34h8" stroke="white" strokeWidth="3" strokeLinecap="round"/></svg>), title: 'Agile Collaboration', desc: 'Our teams work in tight collaboration with your stakeholders, adapting quickly and communicating clearly throughout.' },
-      { icon: (<svg width="48" height="48" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="16" stroke="white" strokeWidth="3"/><path d="M24 14v10l7 4" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/></svg>), title: 'Long-Term Partnership', desc: 'We build lasting relationships, acting as a trusted extension of your team well beyond initial project delivery.' },
-    ],
-  },
-  {
-    icon: '🚀',
-    title: 'Innovation & Quality',
-    desc: 'We leverage cutting-edge technologies and best practices to deliver innovative solutions with exceptional quality standards.',
-    img: innovationImg,
-    modalItems: [
-      { icon: (<svg width="48" height="48" viewBox="0 0 48 48" fill="none"><path d="M24 6c-8 0-14 7-14 14 0 5 3 9 6 11v5h16v-5c3-2 6-6 6-11 0-7-6-14-14-14z" stroke="white" strokeWidth="3" strokeLinejoin="round"/><path d="M18 36h12M20 40h8" stroke="white" strokeWidth="3" strokeLinecap="round"/></svg>), title: 'R&D Investment', desc: 'We continually invest in research and emerging technologies to bring you solutions that keep you ahead of the curve.' },
-      { icon: (<svg width="48" height="48" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="8" stroke="white" strokeWidth="3"/><path d="M24 8v4M24 36v4M8 24h4M36 24h4M13 13l3 3M35 13l-3 3M13 35l3-3M35 35l-3-3" stroke="white" strokeWidth="3" strokeLinecap="round"/></svg>), title: 'Cutting-Edge Tech', desc: 'From AI to cloud-native architectures, we adopt the right modern technologies to solve your most complex challenges.' },
-      { icon: (<svg width="48" height="48" viewBox="0 0 48 48" fill="none"><path d="M10 24l8 8 20-16" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/><rect x="6" y="8" width="36" height="32" rx="3" stroke="white" strokeWidth="3"/></svg>), title: 'Quality Assurance', desc: 'Rigorous QA processes and coding standards are embedded in every stage of our development lifecycle.' },
-      { icon: (<svg width="48" height="48" viewBox="0 0 48 48" fill="none"><path d="M8 40V24l8-16 8 8 8-8 8 16v16" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/><path d="M8 40h32" stroke="white" strokeWidth="3" strokeLinecap="round"/></svg>), title: 'Continuous Evolution', desc: 'Our solutions evolve with your business — we build for today while architecting for what comes next.' },
-    ],
-  },
-];
-
 /* ─── SERVICES GRID COMPONENT ─────────────────────────── */
 function ServicesGrid() {
   const navigate = useNavigate();
   const [gridRef, gridVisible] = useScrollAnimation({ threshold: 0.05 });
 
-  const handleServiceClick = (route) => {
-    navigate(route);
+  const handleServiceClick = () => {
+    navigate('/contact');
   };
 
   return (
@@ -167,37 +130,6 @@ function ServicesGrid() {
         </div>
       </div>
     </section>
-  );
-}
-
-/* ─── WHY MODAL - WITH BACKGROUND IMAGE ───────────────── */
-function WhyModal({ item, onClose }) {
-  if (!item) return null;
-  return (
-    <div className="exp-modal-overlay" onClick={onClose}>
-      <div 
-        className="exp-modal why-modal-with-bg" 
-        onClick={e => e.stopPropagation()}
-        style={{ 
-          backgroundImage: `linear-gradient(145deg, rgba(30,64,175,0.92) 0%, rgba(21,101,192,0.95) 50%, rgba(30,58,138,0.92) 100%), url("${item.img}")`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat'
-        }}
-      >
-        <button className="exp-modal-close" onClick={onClose}>✕</button>
-        <h3 className="exp-modal-title">{item.title}</h3>
-        <div className="exp-modal-grid">
-          {item.modalItems.map((m, i) => (
-            <div key={i} className="exp-modal-col">
-              <div className="exp-modal-icon">{m.icon}</div>
-              <h4 className="exp-modal-item-title">{m.title}</h4>
-              <p className="exp-modal-item-desc">{m.desc}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
   );
 }
 
@@ -237,6 +169,7 @@ function ContactFormOnly() {
     'Health Cloud',
     'Financial Services Cloud',
     'Custom Development',
+    'Real Estate Solutions',
     'Other'
   ];
 
@@ -394,11 +327,8 @@ function ContactFormOnly() {
 
 /* ─── MAIN COMPONENT ──────────────────────────────────── */
 export default function ServicePages() {
-  const [activeWhyModal, setActiveWhyModal] = useState(null);
-
   // Scroll animations for sections
   const [heroRef, heroVisible] = useScrollAnimation();
-  const [whyRef, whyVisible] = useScrollAnimation({ threshold: 0.1 });
 
   return (
     <div className="services-page">
@@ -423,29 +353,7 @@ export default function ServicePages() {
       {/* ══ 2. SERVICES GRID ══ */}
       <ServicesGrid />
 
-      {/* ══ 3. WHY CHOOSE US ══ */}
-      <section className="srv-why" ref={whyRef}>
-        <div className="container">
-          <h2 className={`why-heading anim anim-up ${whyVisible ? 'anim-visible' : ''}`}>Why Choose Us?</h2>
-          <div className="why-grid">
-            {whyCards.map((card, i) => (
-              <div key={i} className={`why-card anim anim-up anim-d${i + 1} ${whyVisible ? 'anim-visible' : ''}`} style={{ backgroundImage: `url(${card.img})` }}>
-                <div className="why-card__overlay" />
-                <div className="why-card__content">
-                  <div className="why-card__icon">{card.icon}</div>
-                  <h4 className="why-card__title">{card.title}</h4>
-                  <p className="why-card__desc">{card.desc}</p>
-                  <div className="why-arrow-btn" onClick={() => setActiveWhyModal(card)} title="Learn More">›</div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {activeWhyModal && <WhyModal item={activeWhyModal} onClose={() => setActiveWhyModal(null)} />}
-
-      {/* ══ 4. CONTACT FORM ONLY - NO INFO CARDS ══ */}
+      {/* ══ 3. CONTACT FORM ONLY - NO INFO CARDS ══ */}
       <ContactFormOnly />
 
     </div>

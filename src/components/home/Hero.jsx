@@ -1,8 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
+import { useNavigate } from "react-router-dom";
 import "./Hero.css";
 
 /* ── Hero ────────────────────────────────────────────────────── */
 export default function Hero() {
+  const navigate = useNavigate();
+
   return (
     <>
       {/* ═══════════════════════════════════════════════════════════ */}
@@ -43,7 +46,7 @@ export default function Hero() {
 
             {/* CTA buttons */}
             <div className="hero-actions">
-              <button className="btn-primary">
+              <button className="btn-primary" onClick={() => navigate('/contact')}>
                 Get Your Free Consultation
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
                   <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
